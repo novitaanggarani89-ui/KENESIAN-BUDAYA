@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bantengan | Sanggar Seni</title>
+<style>
+:root{--bg:#f5f6f8;--panel:#ffffff;--panel2:#fff4f4;--gold:#c9252d;--gold2:#e34b52;--text:#20242b;--muted:#727b88;--line:#e6e8ec;--red:#c9252d}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(180deg,#fff 0%,#f5f6f8 65%);color:var(--text);font:15px/1.5 Inter,Segoe UI,Arial,sans-serif}
+.layout{display:flex;min-height:100vh}.sidebar{width:250px;background:#ffffff;border-right:1px solid var(--line);box-shadow:5px 0 24px #20242b08;padding:28px 18px;position:fixed;inset:0 auto 0 0;z-index:5;display:flex;flex-direction:column}
+.brand{display:flex;gap:12px;align-items:center;padding:0 8px 28px}.brandmark{width:44px;height:44px;border-radius:14px;background:linear-gradient(135deg,#ed4b52,#b81720);display:grid;place-items:center;color:#ffffff;font-size:24px;font-weight:900;box-shadow:0 8px 25px #d69d3b33}.brand strong{font-size:17px;letter-spacing:1.4px}.brand small{display:block;color:var(--muted);font-size:11px;letter-spacing:2px}
+.navlabel{font-size:10px;color:#8b929c;letter-spacing:2px;margin:15px 12px 9px}.nav{display:grid;gap:7px}.nav button{border:0;background:transparent;color:#596273;text-align:left;padding:13px 14px;border-radius:12px;cursor:pointer;font-size:14px;display:flex;align-items:center;gap:12px;transition:.2s}.nav button:hover,.nav button.active{background:#fff0f1;color:var(--gold);border:1px solid #f5c9cc}.nav .ico{width:20px;text-align:center;font-size:17px}.sidebar-foot{margin-top:auto;border-top:1px solid var(--line);padding:18px 8px 0;color:var(--muted);font-size:12px}
+.main{margin-left:250px;width:calc(100% - 250px);padding:30px clamp(18px,4vw,48px)}.topbar{display:flex;justify-content:space-between;align-items:center;gap:18px;margin-bottom:28px}.eyebrow{color:var(--gold);font-size:11px;letter-spacing:2.5px;text-transform:uppercase}.topbar h1{font-size:clamp(25px,3vw,34px);margin:5px 0 0;letter-spacing:-.7px}.userchip{display:flex;align-items:center;gap:10px;background:#ffffff;border:1px solid var(--line);padding:8px 12px;border-radius:40px;color:#3b424d}.avatar{width:35px;height:35px;border-radius:50%;object-fit:cover;border:2px solid var(--gold)}
+.page{display:none;animation:rise .35s ease}.page.active{display:block}@keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.hero{position:relative;overflow:hidden;border-radius:24px;min-height:290px;padding:38px;display:flex;align-items:center;background:linear-gradient(90deg,#ffffff 0%,#ffffffed 42%,#ffffff40 100%),url('https://images.unsplash.com/photo-1516280440614-37939bbacb1d?auto=format&fit=crop&w=1400&q=85') center/cover;border:1px solid #e6e8ec}.hero:after{content:"";position:absolute;right:-70px;bottom:-130px;width:340px;height:340px;border:1px solid #c9252d30;border-radius:50%;box-shadow:0 0 0 35px #c9252d08,0 0 0 70px #c9252d05}.hero-content{max-width:590px;position:relative;z-index:1}.hero h2{font-size:clamp(30px,4vw,48px);line-height:1.08;margin:12px 0}.hero p{color:#596273;max-width:490px}.btn{display:inline-flex;align-items:center;gap:9px;background:var(--gold);color:#ffffff;border:0;padding:12px 17px;border-radius:11px;font-weight:750;cursor:pointer;margin-top:12px}.btn:hover{background:var(--gold2)}.sectionhead{display:flex;justify-content:space-between;align-items:end;margin:28px 0 14px}.sectionhead h3{font-size:19px;margin:0}.sectionhead span{color:var(--muted);font-size:12px}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}.stat,.panel{background:#ffffff;border:1px solid var(--line);box-shadow:0 8px 24px #1e293b08;border-radius:17px;padding:20px}.stat .symbol{color:var(--gold);font-size:20px}.stat small{display:block;color:var(--muted);margin-top:8px}.stat strong{font-size:26px;display:block;margin-top:4px}.grid2{display:grid;grid-template-columns:1.1fr .9fr;gap:16px}.profile{display:flex;align-items:center;gap:18px}.profile img{width:94px;height:94px;border-radius:18px;object-fit:cover;border:2px solid #c99b4d}.profile h3{margin:0 0 4px}.profile p{margin:0;color:var(--muted)}.tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.tag{border:1px solid #f3c5c8;background:#fff3f3;color:var(--gold2);padding:5px 10px;border-radius:30px;font-size:11px}
+.tablewrap{overflow:auto}.table{width:100%;border-collapse:collapse;min-width:480px}.table th,.table td{text-align:left;padding:13px 12px;border-bottom:1px solid var(--line)}.table th{color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:1px}.table td{font-size:13px}.pill{padding:4px 9px;border-radius:30px;background:#fff0f1;color:var(--gold2);font-size:11px}.pill.red{background:#ffeded;color:#c9252d}
+.toolbar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:18px}.toolbar input,.toolbar select,.field input,.field select{background:#ffffff;border:1px solid var(--line);color:var(--text);padding:11px 13px;border-radius:10px;outline:none}.toolbar input:focus,.field input:focus{border-color:var(--gold)}
+.foldergrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.folder{border:1px solid var(--line);background:#ffffff;border-radius:17px;overflow:hidden;cursor:pointer;transition:.22s}.folder:hover{transform:translateY(-4px);border-color:#c9252d;box-shadow:0 12px 30px #0003}.folder img{width:100%;height:155px;object-fit:cover;display:block}.folderbody{padding:15px}.folderbody strong{display:block}.folderbody small{color:var(--muted)}.foldericon{color:var(--gold);margin-right:8px}
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.gallery img{width:100%;height:170px;object-fit:cover;border-radius:12px;cursor:pointer;transition:.2s}.gallery img:hover{transform:scale(1.02)}.modal{display:none;position:fixed;inset:0;background:#ffffffee;z-index:20;padding:28px;overflow:auto}.modal.show{display:block}.modalhead{display:flex;justify-content:space-between;align-items:center;max-width:1100px;margin:0 auto 20px}.modalhead h2{margin:0}.close{background:#ffffff;color:#20242b;border:1px solid var(--line);border-radius:10px;padding:10px 14px;cursor:pointer}.lightbox{display:none;position:fixed;inset:0;background:#20242be8;z-index:30;place-items:center;padding:20px}.lightbox.show{display:grid}.lightbox img{max-width:95vw;max-height:85vh;border-radius:12px}.lightbox button{position:absolute;right:25px;top:20px}
+.formrow{display:grid;grid-template-columns:1fr 1fr;gap:12px}.field{display:grid;gap:7px;margin:12px 0}.field label{font-size:12px;color:var(--muted)}.field input,.field select{width:100%}.emptyhint{color:var(--muted);font-size:13px;margin-top:12px}
+.mobiletoggle{display:none}
+@media(max-width:950px){.stats{grid-template-columns:repeat(2,1fr)}.foldergrid{grid-template-columns:repeat(2,1fr)}.grid2{grid-template-columns:1fr}}
+@media(max-width:680px){.sidebar{width:72px;padding:18px 9px}.brand{justify-content:center;padding:0 0 22px}.brandtext,.navlabel,.nav button .navtext,.sidebar-foot{display:none}.nav button{justify-content:center;padding:13px 8px}.main{margin-left:72px;width:calc(100% - 72px);padding:20px 14px}.topbar{align-items:flex-start}.userchip span{display:none}.hero{padding:25px;min-height:260px}.stats{gap:9px}.stat{padding:14px}.stat strong{font-size:22px}.foldergrid{grid-template-columns:1fr 1fr}.folder img{height:115px}.gallery{grid-template-columns:1fr 1fr}.gallery img{height:125px}.formrow{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="layout">
+<aside class="sidebar">
+  <div class="brand"><div class="brandmark">♞</div><div class="brandtext"><strong>BANTENGAN</strong><small>SANGGAR KESENIAN</small></div></div>
+  <div class="navlabel">MENU UTAMA</div>
+  <nav class="nav">
+    <button class="active" data-page="dashboard"><span class="ico">⌂</span><span class="navtext">Dashboard</span></button>
+    <button data-page="keluar"><span class="ico">⇄</span><span class="navtext">Keluar Masuk</span></button>
+    <button data-page="biaya"><span class="ico">◈</span><span class="navtext">Total Biaya</span></button>
+    <button data-page="dokumentasi"><span class="ico">▧</span><span class="navtext">Dokumentasi</span></button>
+  </nav>
+  <div class="sidebar-foot">Melestarikan budaya,<br>menjaga warisan leluhur.<br><br>© Sanggar Bantengan</div>
+</aside>
+<main class="main">
+<header class="topbar"><div><div class="eyebrow">Portal Sanggar • Budaya Nusantara</div><h1 id="pageTitle">Dashboard</h1></div><div class="userchip"><img class="avatar" src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=100&q=80" alt="Avatar pengurus"><span>Pengurus Sanggar</span></div></header>
+
+<section class="page active" id="dashboard">
+  <div class="hero"><div class="hero-content"><div class="eyebrow">Tradisi • Jiwa • Kebersamaan</div><h2>Menjaga Warisan<br><span style="color:var(--gold)">Seni Bantengan</span></h2><p>Ruang digital untuk mengenal perjalanan sanggar, menyimpan dokumentasi pertunjukan, serta mengelola kegiatan dan kebutuhan kesenian Bantengan.</p><button class="btn" onclick="showPage('dokumentasi')">✦ Jelajahi Dokumentasi</button></div></div>
+  <div class="sectionhead"><h3>Ringkasan Sanggar</h3><span>Informasi kegiatan</span></div>
+  <div class="stats"><div class="stat"><div class="symbol">♞</div><strong id="memberCount">32</strong><small>Anggota Sanggar</small></div><div class="stat"><div class="symbol">✦</div><strong id="eventCount">18</strong><small>Agenda & Pertunjukan</small></div><div class="stat"><div class="symbol">▧</div><strong id="photoCount">126</strong><small>Dokumentasi Foto</small></div><div class="stat"><div class="symbol">◈</div><strong id="costSummary">Rp 2,4 jt</strong><small>Total Pengeluaran</small></div></div>
+  <div class="sectionhead"><h3>Profil Singkat</h3><span>Identitas sanggar</span></div>
+  <div class="grid2"><div class="panel"><div class="profile"><img src="https://images.unsplash.com/photo-1531058020387-3be344556be6?auto=format&fit=crop&w=300&q=80" alt="Foto kesenian"><div><h3>Sanggar Bantengan [Nama Sanggar]</h3><p>Komunitas seni tradisional • [Nama Desa/Kota]</p><div class="tags"><span class="tag">Seni Tradisi</span><span class="tag">Budaya Jawa</span><span class="tag">Bantengan</span></div></div></div><p class="emptyhint">Sanggar menjadi wadah berkumpulnya generasi untuk merawat seni pertunjukan, mempererat persaudaraan, dan mengenalkan budaya lokal kepada masyarakat.</p></div>
+  <div class="panel"><h3 style="margin-top:0">Agenda Terdekat</h3><div class="tablewrap"><table class="table"><thead><tr><th>Agenda</th><th>Tanggal</th><th>Status</th></tr></thead><tbody><tr><td>Latihan rutin</td><td>Sabtu, 15 Nov</td><td><span class="pill">Terjadwal</span></td></tr><tr><td>Pentas budaya desa</td><td>22 Nov</td><td><span class="pill">Persiapan</span></td></tr><tr><td>Evaluasi sanggar</td><td>29 Nov</td><td><span class="pill red">Akan datang</span></td></tr></tbody></table></div></div></div>
+</section>
+
+<section class="page" id="keluar">
+  <div class="sectionhead"><h3>Catatan Keluar & Masuk</h3><span>Administrasi sanggar</span></div>
+  <div class="panel"><div class="toolbar"><input id="trxSearch" placeholder="Cari transaksi..." oninput="filterRows('trxSearch','trxTable')"><button class="btn" style="margin:0" onclick="addTransaction()">＋ Tambah catatan</button></div>
+  <div class="tablewrap"><table class="table" id="trxTable"><thead><tr><th>Tanggal</th><th>Keterangan</th><th>Jenis</th><th>Jumlah</th><th>Catatan</th></tr></thead><tbody><tr><td>02/11/2026</td><td>Iuran anggota</td><td><span class="pill">Masuk</span></td><td>Rp 500.000</td><td>Iuran rutin</td></tr><tr><td>03/11/2026</td><td>Pembelian tali & perlengkapan</td><td><span class="pill red">Keluar</span></td><td>Rp 275.000</td><td>Persiapan pentas</td></tr><tr><td>04/11/2026</td><td>Donasi warga</td><td><span class="pill">Masuk</span></td><td>Rp 750.000</td><td>Donasi kegiatan</td></tr></tbody></table></div><p class="emptyhint">Contoh data. Catatan yang ditambahkan tersimpan selama halaman ini terbuka.</p></div>
+</section>
+
+<section class="page" id="biaya">
+  <div class="sectionhead"><h3>Rekap Total Biaya</h3><span>Estimasi anggaran kegiatan</span></div>
+  <div class="stats"><div class="stat"><div class="symbol">↗</div><strong id="income">Rp 1.250.000</strong><small>Total pemasukan</small></div><div class="stat"><div class="symbol">↘</div><strong id="expense">Rp 850.000</strong><small>Total pengeluaran</small></div><div class="stat"><div class="symbol">◈</div><strong id="balance">Rp 400.000</strong><small>Saldo sanggar</small></div><div class="stat"><div class="symbol">▤</div><strong>3</strong><small>Rincian anggaran</small></div></div>
+  <div class="sectionhead"><h3>Rincian Biaya Kegiatan</h3><span>Perkiraan</span></div><div class="panel tablewrap"><table class="table"><thead><tr><th>Kebutuhan</th><th>Anggaran</th><th>Keterangan</th></tr></thead><tbody><tr><td>Perawatan properti Bantengan</td><td>Rp 350.000</td><td><span class="pill">Prioritas</span></td></tr><tr><td>Kostum & atribut</td><td>Rp 300.000</td><td><span class="pill">Rutin</span></td></tr><tr><td>Konsumsi latihan</td><td>Rp 200.000</td><td><span class="pill">Kegiatan</span></td></tr></tbody></table></div>
+</section>
+
+<section class="page" id="dokumentasi">
+  <div class="sectionhead"><h3>Dokumentasi Sanggar</h3><span>Klik folder untuk membuka galeri foto</span></div>
+  <div class="toolbar"><input id="folderSearch" placeholder="Cari folder dokumentasi..." oninput="filterFolders()"><span class="pill">3 Folder • 18 Foto contoh</span></div>
+  <div class="foldergrid" id="folderGrid">
+    <article class="folder" data-folder="latihan" onclick="openFolder('latihan')"><img src="https://images.unsplash.com/photo-1516280440614-37939bbacb1d?auto=format&fit=crop&w=700&q=80" alt="Latihan seni"><div class="folderbody"><strong><span class="foldericon">📁</span>Latihan Rutin</strong><small>6 foto • Kegiatan latihan anggota</small></div></article>
+    <article class="folder" data-folder="pentas" onclick="openFolder('pentas')"><img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=700&q=80" alt="Pentas budaya"><div class="folderbody"><strong><span class="foldericon">📁</span>Pentas & Festival</strong><small>6 foto • Pertunjukan dan festival</small></div></article>
+    <article class="folder" data-folder="behind" onclick="openFolder('behind')"><img src="https://images.unsplash.com/photo-1524368719476-3c5c4e7d2a?auto=format&fit=crop&w=700&q=80" alt="Persiapan"><div class="folderbody"><strong><span class="foldericon">📁</span>Persiapan & Kebersamaan</strong><small>6 foto • Momen di balik panggung</small></div></article>
+  </div>
+</section>
+</main>
+</div>
+
+<div class="modal" id="galleryModal"><div class="modalhead"><div><div class="eyebrow">Album Dokumentasi</div><h2 id="galleryTitle">Galeri Foto</h2></div><button class="close" onclick="closeGallery()">✕ Tutup</button></div><div class="gallery" id="galleryContent"></div></div>
+<div class="lightbox" id="lightbox" onclick="closeLightbox()"><button class="close">✕</button><img id="lightboxImage" src="" alt="Foto dokumentasi besar"></div>
+
+<script>
+const pages={dashboard:"Dashboard",keluar:"Keluar Masuk",biaya:"Total Biaya",dokumentasi:"Dokumentasi"};
+function showPage(id){document.querySelectorAll(".page").forEach(p=>p.classList.toggle("active",p.id===id));document.querySelectorAll(".nav button").forEach(b=>b.classList.toggle("active",b.dataset.page===id));document.getElementById("pageTitle").textContent=pages[id];}
+document.querySelectorAll(".nav button").forEach(b=>b.addEventListener("click",()=>showPage(b.dataset.page)));
+const galleryData={
+ latihan:["https://images.unsplash.com/photo-1516280440614-37939bbacb1d?auto=format&fit=crop&w=900&q=85","https://images.unsplash.com/photo-1531058020387-3be344556be6?auto=format&fit=crop&w=900&q=85","https://images.unsplash.com/photo-150138806157?auto=format&fit=crop&w=900&q=85","https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=900&q=85","https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=900&q=85","https://images.unsplash.com/photo-1506157786151-b8491531f063?auto=format&fit=crop&w=900&q=85"],
+ pentas:["https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=900&q=85","https://images.unsplash.com/photo-1506157786151-b8491531f063?auto=format&fit=crop&w=900&q=85","https://images.unsplash.com/photo-150138806157?auto=format&fit=crop&w=900&q=85","https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=900&q=85","https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=900&q=85","https://images.unsplash.com/photo-1459749411175-04bf5292ceea?auto=format&fit=crop&w=900&q=85"],
+ behind:["https://images.unsplash.com/photo-1524368719476-3c5c4e7d2a?auto=format&fit=crop&w=900&q=85","https://images.unsplash.com/photo-1516280440614-37939bbacb1d?auto=format&fit=crop&w=900&q=85","https://images.unsplash.com/photo-1531058020387-3be344556be6?auto=format&fit=crop&w=900&q=85","https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=900&q=85","https://images.unsplash.com/photo-1506157786151-b8491531f063?auto=format&fit=crop&w=900&q=85","https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=900&q=85"]
+};
+const folderNames={latihan:"Latihan Rutin",pentas:"Pentas & Festival",behind:"Persiapan & Kebersamaan"};
+function openFolder(key){document.getElementById("galleryTitle").textContent=folderNames[key];const host=document.getElementById("galleryContent");host.innerHTML="";galleryData[key].forEach((src,i)=>{const img=document.createElement("img");img.src=src;img.alt=folderNames[key]+" "+(i+1);img.loading="lazy";img.onclick=()=>openLightbox(src);host.appendChild(img)});document.getElementById("galleryModal").classList.add("show")}
+function closeGallery(){document.getElementById("galleryModal").classList.remove("show")}
+function openLightbox(src){document.getElementById("lightboxImage").src=src;document.getElementById("lightbox").classList.add("show")}
+function closeLightbox(){document.getElementById("lightbox").classList.remove("show")}
+function filterFolders(){const q=document.getElementById("folderSearch").value.toLowerCase();document.querySelectorAll(".folder").forEach(f=>f.style.display=f.innerText.toLowerCase().includes(q)?"":"none")}
+function filterRows(inputId,tableId){const q=document.getElementById(inputId).value.toLowerCase();document.querySelectorAll("#"+tableId+" tbody tr").forEach(r=>r.style.display=r.innerText.toLowerCase().includes(q)?"":"none")}
+function addTransaction(){const date=prompt("Tanggal transaksi (contoh: 06/11/2026):");if(!date)return;const desc=prompt("Keterangan transaksi:");if(!desc)return;const type=prompt("Jenis transaksi (Masuk/Keluar):");if(!type)return;const amount=prompt("Jumlah (contoh: Rp 100.000):");if(!amount)return;const note=prompt("Catatan:")||"-";const tr=document.createElement("tr");tr.innerHTML=`<td>${safe(date)}</td><td>${safe(desc)}</td><td><span class="pill ${type.toLowerCase().includes("keluar")?"red":""}">${safe(type)}</span></td><td>${safe(amount)}</td><td>${safe(note)}</td>`;document.querySelector("#trxTable tbody").prepend(tr)}
+function safe(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+document.addEventListener("keydown",e=>{if(e.key==="Escape"){closeGallery();closeLightbox()}});
+</script>
+</body>
+</html>
